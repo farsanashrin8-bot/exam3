@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>recipes food</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="container px-4 px-lg-5">
+
+            <a class="navbar-brand" href="#">Recipies</a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarSupportedContent"
+            >
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">menu</a>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">foods</a>
+                    </li>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <header class="bg-dark py-5">
+ <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">
+                    RECIPIES FOOD
+                </h1>
+  <p class="lead fw-normal text-white-50 mb-0">
+                    tasty and healthy food</p>
+</div>
+
+        </div>
+
+    </header>
+
+    <section class="py-5">
+
+        <div class="container px-4 px-lg-5 mt-5">
+
+            <div
+                id="output"
+                class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center"
+            >
+
+        
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+
+        <div class="container">
+
+            <p class="m-0 text-center text-white">
+                Copyright &copy; Your Website 2026
+            </p>
+
+        </div>
+
+    </footer>
+    <script>
+
+        fetch('https://dummyjson.com/recipes') .then((res) => {
+              return res.json(); }).then((output) => {
+ console.log(output);
+
+                let products = output.recipes;
+
+                let display = document.getElementById('output');
+
+                products.forEach((rec) => {
+                display.innerHTML += `
+
+                        <div class="col mb-5">
+
+                            <div class="card h-100">
+
+                                <img
+                                    class="card-img-top"
+                                    src="${rec.image}"
+                                    alt=""
+                                    style="height:180px; object-fit:cover;"
+                                >
+
+                                <div class="card-body p-4">
+
+                                    <div class="text-center">
+
+                                        <h5 class="fw-bolder">
+                                            ${rec.name}
+                                        </h5>
+                                           <p class="mb-0">
+                                            Cuisine: ${rec.cuisine}
+                                        </p>
+
+                                        <p class="mb-2">
+                                            Calories: ${rec.caloriesPerServing}
+                                        </p>
+
+                                        
+                                           <p class="mb-2">
+                                          rating:   ${rec.rating}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+
+                                    <div class="text-center">
+
+                                        <button
+                                            class="btn btn-dark mt-3"
+                                            onclick="order()"
+                                        >
+                                            order
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                });
+
+            })
+
+    </script>
+
+</body>
+
+</html>
